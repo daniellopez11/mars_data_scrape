@@ -5,12 +5,12 @@ from splinter import Browser
 import pandas as pd
 import html5lib
 
-# Define a empty dictionary to store all scraped data
-data_scrape_dict = {}
+def scrape():
 
-def scrape(dictionary):
+    # Define a empty dictionary to store all scraped data
+    data_scrape_dict = {}   
+
     # NASA Mars news site scrape
-
     news_html = ""
 
     with Browser('chrome', headless=False) as browser:
@@ -46,8 +46,8 @@ def scrape(dictionary):
     news_title = news_title_all[0]
     news_p = news_para_all[0]
 
-    dictionary['news_title'] = news_title
-    dictionary['news_p'] = news_p
+    data_scrape_dict['news_title'] = news_title
+    data_scrape_dict['news_p'] = news_p
 
     # JPL Mars Space Featured Image scrape
     # Url for jpl main site
@@ -74,8 +74,8 @@ def scrape(dictionary):
         except:
             print("This is an error message!")
 
-    # Save feat_image_url to dictionary
-    dictionary['feat_image_url'] = feat_image_url
+    # Save feat_image_url to data_scrape_dict
+    data_scrape_dict['feat_image_url'] = feat_image_url
 
     # Twitter @MarsWxReport scrape
     weather_html = ""
@@ -84,14 +84,14 @@ def scrape(dictionary):
         url = 'https://twitter.com/marswxreport?lang=en'
         browser.visit(url)
         weather_html = browser.html
-        
+       
     soup = BeautifulSoup(weather_html, 'html.parser')
 
     results = soup.find('div', class_='js-tweet-text-container')
 
-    # Save the tweet text for the weather report to dictionary
+    # Save the tweet text for the weather report to data_scrape_dict
     mars_weather = results.text.strip()
-    dictionary['mars_weather'] = mars_weather
+    data_scrape_dict['mars_weather'] = mars_weather
 
     # Mars facts url
     facts_url = 'https://space-facts.com/mars/'
@@ -106,16 +106,16 @@ def scrape(dictionary):
     # Generate HTML table from DataFrame and strip unwanted newlines to clean up the table.
     html_table = df.to_html().replace('\n', '')
 
-    # Save html_table to dictionary
-    dictionary['html_table'] = html_table
+    # Save html_table to data_scrape_dict
+    data_scrape_dict['html_table'] = html_table
 
     # Mar's hemispheres image scrape
     # Urls for hemisphere images
     hemisphere_urls = ['https://astrogeology.usgs.gov/search/map/Mars/Viking/valles_marineris_enhanced',
-                    'https://astrogeology.usgs.gov/search/map/Mars/Viking/cerberus_enhanced',
-                    'https://astrogeology.usgs.gov/search/map/Mars/Viking/schiaparelli_enhanced',
-                    'https://astrogeology.usgs.gov/search/map/Mars/Viking/syrtis_major_enhanced'
-                    ]
+                       'https://astrogeology.usgs.gov/search/map/Mars/Viking/cerberus_enhanced',
+                       'https://astrogeology.usgs.gov/search/map/Mars/Viking/schiaparelli_enhanced',
+                       'https://astrogeology.usgs.gov/search/map/Mars/Viking/syrtis_major_enhanced'
+                      ]
 
     image_html = ""
 
@@ -124,7 +124,7 @@ def scrape(dictionary):
     hemisphere_image_urls = []
 
     # Obtain images for each of Mar's hemispheres using for loop.
-    # The image url string for the full resolution hemipshere image and the hemisphere title are saved in individual dicts. 
+    # The image url string for the full res hemipshere image & title are saved in individual dicts. 
     # Dicts are saved in a list, hemisphere_image_urls.
     for hemi_url in hemisphere_urls:
 
@@ -155,10 +155,8 @@ def scrape(dictionary):
         # Append dict to hemisphere_image_urls list
         hemisphere_image_urls.append(img_dict)
 
-    # Save hemisphere_image_urls to dictionary
-    dictionary['hemisphere_image_urls'] = hemisphere_image_urls
+    # Save hemisphere_image_urls to data_scrape_dict
+    data_scrape_dict['hemisphere_image_urls'] = hemisphere_image_urls
 
-    print(dictionary)
-
-scrape(data_scrape_dict)
+    return data_scrape_dict
 
