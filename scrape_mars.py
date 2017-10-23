@@ -5,7 +5,6 @@ from splinter import Browser
 import pandas as pd
 import html5lib
 
-
 # Define a empty dictionary to store all scraped data
 data_scrape_dict = {}
 
@@ -25,7 +24,6 @@ def scrape(dictionary):
     results = soup.find_all('li', class_='slide')
 
     # Loop through returned results to collect the News Title and Paragragh Text
-
     news_title_all = []
     news_para_all = []
 
@@ -45,7 +43,6 @@ def scrape(dictionary):
             print("This is an error message!")
 
     # Save the most recent (1st on list) news article to variables and save to data_scrape_dict
-
     news_title = news_title_all[0]
     news_p = news_para_all[0]
 
@@ -70,10 +67,6 @@ def scrape(dictionary):
     # Loop through returned results to collect image data
     for result in results:
         try:
-            # Retrieve image title & description
-            image_title = result.find('h1', class_ = 'media_feature_title')  
-            image_desc = result.a['data-description']
-
             # Retrieve full image url
             image_link = result.a['data-fancybox-href']
             feat_image_url = jpl_url + image_link
@@ -133,7 +126,6 @@ def scrape(dictionary):
     # Obtain images for each of Mar's hemispheres using for loop.
     # The image url string for the full resolution hemipshere image and the hemisphere title are saved in individual dicts. 
     # Dicts are saved in a list, hemisphere_image_urls.
-
     for hemi_url in hemisphere_urls:
 
         with Browser('chrome', headless=False) as browser:
@@ -162,9 +154,6 @@ def scrape(dictionary):
         
         # Append dict to hemisphere_image_urls list
         hemisphere_image_urls.append(img_dict)
-
-    # List contains one dictionary for each hemisphere
-    hemisphere_image_urls
 
     # Save hemisphere_image_urls to dictionary
     dictionary['hemisphere_image_urls'] = hemisphere_image_urls
