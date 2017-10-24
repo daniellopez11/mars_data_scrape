@@ -103,8 +103,8 @@ def scrape():
     df = table[0]
     df.columns = ['Description', 'Value']
 
-    # Generate HTML table from DataFrame and strip unwanted newlines to clean up the table.
-    html_table = df.to_html().replace('\n', '')
+    # Generate HTML table from DataFrame and strip unwanted new lines and html table tag to clean up the table.
+    html_table = df.to_html().replace('\n', '').replace('<table border="1" class="dataframe">', '').replace('</table>', '')
 
     # Save html_table to data_scrape_dict
     data_scrape_dict['html_table'] = html_table
