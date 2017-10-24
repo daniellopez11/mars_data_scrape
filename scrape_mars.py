@@ -102,6 +102,7 @@ def scrape():
     # Make table scrape into a DataFrame
     df = table[0]
     df.columns = ['Description', 'Value']
+    df.set_index('Description', inplace=True)
 
     # Generate HTML table from DataFrame and strip unwanted new lines and html table tag to clean up the table.
     html_table = df.to_html().replace('\n', '').replace('<table border="1" class="dataframe">', '').replace('</table>', '')
