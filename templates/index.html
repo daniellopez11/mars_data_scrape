@@ -22,7 +22,7 @@
       <div class="col-md-12">
         <h2 class="heading">Latest Mars News</h2>
         <h4>{{listings.news_title}}</h4>
-        <small>{{listings.news_p}}</small>
+        <p>{{listings.news_p}}</p>
       </div>
     </div>
 
@@ -32,6 +32,58 @@
         <h2 class="heading">Featured Mars Image</h2>
         <img src={{listings.feat_image_url}} alt="JPL Mars Feat Image">
       </div>
+    </div>
+
+    <!-- Twitter Mars Weather Report -->
+    <div class="row" id="mars-weather">
+      <div class="col-md-12">
+        <h2 class="heading">Current Weather on Mars</h2>
+        <p>{{listings.mars_weather}}</p>
+      </div>
+    </div>
+
+    <!-- Mars Facts Table -->
+    <div class="row" id="mars-facts">
+      <div class="col-md-12">
+        <h2 class="heading">Mars Facts</h2>
+        <table class="table table-bordered table-hover table-condensed table-striped fixed_headers">{{listings.html_table}}</table>
+      </div>
+    </div>
+    
+    <!-- Mars Hemisphere Images -->
+    <div class="container">
+        <header>
+            <h2 id="text-center">Mars Hemispheres</h2>
+        </header>
+        <hr> 
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-6">
+                    <h3 class="text-center">{{listings.hemisphere_image_urls[0].title}}</h3>    
+                      <div class="thumbnail">
+                          <img src={{listings.hemisphere_image_urls[0].image_url}} alt="Hemisphere Image">
+                      </div>
+                </div>
+                <div class="col-md-6">
+                  <h3 class="text-center">{{listings.hemisphere_image_urls[1].title}}</h3>    
+                    <div class="thumbnail">
+                        <img src={{listings.hemisphere_image_urls[1].image_url}} alt="Hemisphere Image">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                  <h3 class="text-center">{{listings.hemisphere_image_urls[2].title}}</h3>    
+                    <div class="thumbnail">
+                        <img src={{listings.hemisphere_image_urls[2].image_url}} alt="Hemisphere Image">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                  <h3 class="text-center">{{listings.hemisphere_image_urls[3].title}}</h3>    
+                    <div class="thumbnail">
+                        <img src={{listings.hemisphere_image_urls[3].image_url}} alt="Hemisphere Image">
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
   </div>
