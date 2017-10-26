@@ -18,7 +18,7 @@
     </div>
 
     <!-- NASA Mars news -->
-    <div class="row" id="mars-news">
+    <div class="row">
       <div class="col-md-12">
         <h2 class="heading">Latest Mars News</h2>
         <h4>{{listings.news_title}}</h4>
@@ -27,7 +27,7 @@
     </div>
 
     <!-- JPL Mars Space Featured Image -->
-    <div class="row" id="mars-feat-image">
+    <div class="row">
       <div class="col-md-12">
         <h2 class="heading">Featured Mars Image</h2>
         <img src={{listings.feat_image_url}} alt="JPL Mars Feat Image">
@@ -35,7 +35,7 @@
     </div>
 
     <!-- Twitter Mars Weather Report -->
-    <div class="row" id="mars-weather">
+    <div class="row">
       <div class="col-md-12">
         <h2 class="heading">Current Weather on Mars</h2>
         <p>{{listings.mars_weather}}</p>
@@ -43,10 +43,12 @@
     </div>
 
     <!-- Mars Facts Table -->
-    <div class="row" id="mars-facts">
+    <div class="row">
       <div class="col-md-12">
         <h2 class="heading">Mars Facts</h2>
-        <table class="table table-bordered table-hover table-condensed table-striped fixed_headers">{{listings.html_table}}</table>
+        <table class="table table-bordered table-hover table-condensed table-striped fixed_headers">
+          {{listings.html_table}}
+        </table>
       </div>
     </div>
     
